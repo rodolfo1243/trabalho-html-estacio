@@ -13,32 +13,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
         videoThumbs.forEach(thumb => {
             thumb.addEventListener('click', () => {
-                // ESTA É A LINHA DE TESTE PARA DEBUG:
                 console.log('CLIQUE REGISTRADO! Tentando abrir modal...');
 
                 const videoId = thumb.getAttribute('data-video-id');
-                // Adiciona 'rel=0' para remover sugestões no final e 'autoplay=1' para iniciar automaticamente
                 const videoSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
 
-                // Define o link do vídeo e abre o modal
                 videoIframe.src = videoSrc;
                 modal.style.display = 'block';
             });
         });
 
-        // Função para fechar o modal
         const fecharModal = () => {
             modal.style.display = 'none';
-            // Para parar o vídeo quando fechar (limpa o src do iframe)
             videoIframe.src = '';
         };
 
-        // Eventos para fechar o modal
+        
         if (closeButton) {
             closeButton.addEventListener('click', fecharModal);
         }
 
-        // Fechar ao clicar fora do modal
+        
         window.addEventListener('click', (event) => {
             if (event.target === modal) {
                 fecharModal();
